@@ -31,7 +31,7 @@ export function WhatsAppChat({ className = '' }: { className?: string }) {
         <div className="mx-auto mb-3 w-fit rounded-md bg-white/80 px-2 py-0.5 text-[10px] font-medium uppercase tracking-wide text-ink-muted">
           Today
         </div>
-        <blockquote className="ml-auto max-w-[94%] rounded-lg rounded-tr-none bg-[#D9FDD3] px-2.5 pb-1.5 pt-2 text-[12.5px] leading-[1.45] text-ink shadow-[0_1px_0.5px_rgba(0,0,0,0.13)]">
+        <blockquote className="ml-auto max-w-[94%] rounded-lg rounded-tr-none bg-[#D9FDD3] px-2.5 pb-1.5 pt-2 text-[11.5px] leading-[1.45] sm:text-[12.5px] text-ink shadow-[0_1px_0.5px_rgba(0,0,0,0.13)]">
           {whatsappMessage.lines.map((line) => (
             <p key={line}>{line}</p>
           ))}

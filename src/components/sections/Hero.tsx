@@ -1,67 +1,73 @@
 import { Check } from 'lucide-react';
 import Image from 'next/image';
 import { BrowserFrame, PhoneFrame } from '@/components/ui/Frames';
+import { heroTicks } from '@/lib/content';
 import { site } from '@/lib/site';
-
-const ticks = ['Set up in two minutes', 'Works on phone and laptop', 'From $9 a month'];
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-white">
-      <div className="grid-backdrop pointer-events-none absolute inset-x-0 top-0 h-[560px]" aria-hidden />
-
-      <div className="shell relative pt-10 text-center sm:pt-20">
-        <h1 className="mx-auto max-w-[15ch] font-display text-[2.2rem] font-extrabold leading-[1.06] tracking-[-0.025em] text-ink sm:text-[3.4rem] lg:text-[4rem]">
-          Your tuition center, finally <span className="text-green">organised</span>.
-        </h1>
-        <p className="lead mx-auto mt-4 max-w-[36rem] sm:mt-6">
-          Students, batches, attendance, marks, fees and report cards in one simple app, with results parents can check on
-          their phone. Built for tuition centers and coaching institutes.
-        </p>
-
-        <div className="mt-6 flex justify-center gap-2.5 sm:mt-8 sm:gap-3">
-          <a href={site.signupUrl} className="btn-primary">
-            Start your center
-          </a>
-          <a href="#features" className="btn-ghost">
-            See how it works
-          </a>
+    <section className="bg-white pt-8 sm:pt-16 lg:pt-20">
+      <div className="shell">
+        <div className="grid gap-6 lg:grid-cols-12 lg:items-end lg:gap-10">
+          <h1 className="h1 lg:col-span-7">
+            Every batch, every mark, every fee. <span className="text-green">Sorted.</span>
+          </h1>
+          <div className="lg:col-span-5 lg:pb-2">
+            <p className="lead max-w-md">
+              Attendance, marks, fees, report cards and parent updates in one app built for tuition centers and coaching
+              institutes. On your phone and your laptop.
+            </p>
+            <div className="mt-6 flex gap-2.5 sm:gap-3">
+              <a href={site.signupUrl} className="btn-primary">
+                Start your center
+              </a>
+              <a href="#day" className="btn-ghost">
+                See a day in the app
+              </a>
+            </div>
+            <ul className="mt-5 flex flex-wrap gap-x-4 gap-y-1.5 text-[13px] text-ink-soft sm:text-sm">
+              {heroTicks.map((t) => (
+                <li key={t} className="flex items-center gap-1.5">
+                  <Check className="h-4 w-4 text-green" strokeWidth={2.4} aria-hidden />
+                  {t}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
-
-        <ul className="mt-5 flex flex-wrap justify-center gap-x-5 gap-y-1.5 text-[13px] text-ink-soft sm:text-sm">
-          {ticks.map((t) => (
-            <li key={t} className="flex items-center gap-1.5">
-              <Check className="h-4 w-4 text-green" strokeWidth={2.4} aria-hidden />
-              {t}
-            </li>
-          ))}
-        </ul>
       </div>
 
-      <div className="shell relative mt-10 pb-12 sm:mt-16 sm:pb-20">
-        <div className="relative mx-auto max-w-[1080px] pr-[13%] sm:pr-0">
-          <BrowserFrame url="app.powermytutor.com/dashboard">
+      {/* The same center on a laptop and a phone. */}
+      <div className="mx-auto mt-10 max-w-[1320px] sm:mt-14 sm:px-8">
+        <div className="stage h-[400px] rounded-none sm:h-[520px] sm:rounded-[28px] lg:h-[600px]">
+          <BrowserFrame
+            url="app.powermytutor.com/dashboard"
+            className="absolute left-[30%] top-8 w-[720px] sm:left-[24%] sm:top-12 sm:w-[920px] lg:left-[22%] lg:top-14 lg:w-[1080px]"
+          >
             <Image
-              src="/product/dashboard.webp"
-              alt="Power My Tutor dashboard for a coaching institute: active students, exams with results, center average, pass rate, a class average chart and the exam plan"
+              src="/product/hero-dashboard.webp"
+              alt="The Power My Tutor dashboard: active students, exams with results, center average, pass rate and a class average chart"
               width={2880}
               height={1800}
               priority
-              sizes="(min-width: 1140px) 1080px, 92vw"
+              sizes="(min-width: 1024px) 1080px, (min-width: 640px) 920px, 720px"
               className="h-auto w-full"
             />
           </BrowserFrame>
-          <PhoneFrame className="absolute -bottom-6 right-0 w-[30%] sm:-bottom-10 sm:-right-4 sm:w-[23%] lg:-right-10 lg:w-[22%]">
+          <PhoneFrame className="absolute left-[5%] top-5 w-[46%] max-w-[250px] sm:left-[6%] sm:top-9 sm:w-[230px] lg:left-[8%] lg:w-[250px]">
             <Image
-              src="/product/m-attendance.webp"
-              alt="Taking attendance on a phone: a batch list where every student starts present"
+              src="/product/hero-phone.webp"
+              alt="The same dashboard on a phone, with a bottom tab bar for Home, Students, Marks and Exams"
               fill
               priority
-              sizes="(min-width: 1024px) 240px, 30vw"
+              sizes="(min-width: 640px) 250px, 46vw"
               className="object-cover object-top"
             />
           </PhoneFrame>
         </div>
+        <p className="shell mt-3 text-[12px] text-ink-muted sm:px-0 sm:text-[13px]">
+          Real screens from the app, with a sample center’s data.
+        </p>
       </div>
     </section>
   );

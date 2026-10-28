@@ -7,7 +7,7 @@
     -webkit-tap-highlight-color: transparent;
     scroll-behavior: smooth;
     /* Anchored sections clear the sticky header. */
-    scroll-padding-top: 76px;
+    scroll-padding-top: 72px;
   }
   @media (prefers-reduced-motion: reduce) {
     html {
@@ -16,6 +16,7 @@
   }
   body {
     @apply bg-white font-sans text-ink antialiased;
+    font-feature-settings: 'cv11', 'ss01';
   }
   h1,
   h2,
@@ -36,54 +37,63 @@
   .shell {
     @apply mx-auto w-full max-w-content px-4 sm:px-8;
   }
-  .section {
-    @apply py-12 sm:py-20 lg:py-24;
-  }
-  .eyebrow-text {
-    @apply text-[11px] font-semibold uppercase tracking-[0.16em] text-brand sm:text-xs;
+  .h1 {
+    @apply text-balance font-display text-[2.55rem] font-extrabold leading-[1] tracking-[-0.035em] text-ink sm:text-[3.9rem] lg:text-[4.6rem];
   }
   .h2 {
-    @apply text-balance font-display text-[1.6rem] font-extrabold leading-[1.15] tracking-tight text-ink sm:text-[2.25rem];
+    @apply text-balance font-display text-[1.85rem] font-extrabold leading-[1.08] tracking-[-0.03em] text-ink sm:text-[2.6rem] lg:text-[2.9rem];
+  }
+  .h3 {
+    @apply text-balance font-display text-[1.4rem] font-extrabold leading-[1.15] tracking-[-0.025em] text-ink sm:text-[1.75rem];
   }
   .lead {
-    @apply text-pretty text-[15px] leading-relaxed text-ink-soft sm:text-[17px];
+    @apply text-pretty text-[15.5px] leading-relaxed text-ink-soft sm:text-[17px];
+  }
+  .kicker {
+    @apply text-[12px] font-semibold uppercase tracking-[0.14em] text-ink-muted;
   }
 
   .btn {
-    @apply inline-flex shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-full px-4 py-2.5 text-sm font-semibold transition duration-150 sm:px-5 sm:text-[15px];
+    @apply inline-flex shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-full px-4 py-2.5 text-sm font-semibold transition duration-150 sm:px-5 sm:py-3 sm:text-[15px];
   }
   .btn-primary {
-    @apply btn bg-brand text-white shadow-sm hover:bg-brand-hover;
+    @apply btn bg-brand text-white shadow-[0_1px_0_rgba(255,255,255,0.25)_inset,0_1px_2px_rgba(28,25,23,0.15)] hover:bg-brand-hover;
   }
   .btn-ghost {
-    @apply btn border border-ink/15 bg-white text-ink hover:border-ink/30 hover:shadow-soft;
+    @apply btn border border-ink/15 bg-white text-ink hover:border-ink/30;
   }
   .btn-on-ink {
-    @apply btn border border-white/30 text-white hover:border-white/60;
+    @apply btn border border-white/25 text-white hover:border-white/60;
   }
   .btn-sm {
-    @apply px-3.5 py-2 text-[13px] sm:px-4 sm:text-sm;
+    @apply px-3.5 py-2 text-[13px] sm:px-4 sm:py-2 sm:text-sm;
   }
 
-  .card {
-    @apply rounded-2xl border border-ink/10 bg-white sm:rounded-3xl;
+  /* A cream "desk" that real app screens sit on. */
+  .stage {
+    @apply relative overflow-hidden rounded-[20px] bg-cream-soft sm:rounded-[28px];
+    box-shadow: inset 0 0 0 1px rgba(28, 25, 23, 0.05);
   }
 }
 
 @layer utilities {
-  /* Faint neutral grid behind the hero, fading out towards the edges. */
-  .grid-backdrop {
-    background-image: linear-gradient(to right, rgba(28, 25, 23, 0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(28, 25, 23, 0.05) 1px, transparent 1px);
-    background-size: 44px 44px;
-    mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 30%, transparent 75%);
-    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 30%, transparent 75%);
+  /* Crops of app screens fade out where the screen continues. */
+  .fade-r {
+    mask-image: linear-gradient(to right, #000 72%, transparent);
+    -webkit-mask-image: linear-gradient(to right, #000 72%, transparent);
   }
-  .no-scrollbar {
-    scrollbar-width: none;
+  .fade-b {
+    mask-image: linear-gradient(to bottom, #000 70%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent);
   }
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
+  .fade-rb {
+    mask-image: linear-gradient(to right, #000 72%, transparent), linear-gradient(to bottom, #000 72%, transparent);
+    -webkit-mask-image: linear-gradient(to right, #000 72%, transparent), linear-gradient(to bottom, #000 72%, transparent);
+    mask-composite: intersect;
+    -webkit-mask-composite: source-in;
+  }
+  .lift {
+    filter: drop-shadow(0 1px 1px rgba(28, 25, 23, 0.06)) drop-shadow(0 18px 30px rgba(28, 25, 23, 0.14));
   }
   .num {
     font-variant-numeric: tabular-nums;

@@ -1,115 +1,72 @@
 import {
   Building2,
-  CalendarCheck,
   ClipboardList,
   Download,
-  FileText,
-  IndianRupee,
-  KeyRound,
   Layers,
   Lightbulb,
-  LockKeyhole,
-  MessageCircle,
-  PenLine,
   ShieldCheck,
-  Smartphone,
-  Trophy,
   Upload,
   UserRound,
   type LucideIcon,
 } from 'lucide-react';
 
 /*
- * All words on the home page. Every claim here matches what the app does today; screenshots in
- * /public/product are real captures of the app with its fictional demo center (Apex Science Institute).
+ * All words on the home page. Every claim matches what the app does today. Screens in
+ * /public/product are real captures of the app with its fictional sample center, Apex Science Institute.
  */
 
-export const trust: { icon: LucideIcon; text: string }[] = [
-  { icon: ShieldCheck, text: 'Each center’s data kept separate' },
-  { icon: KeyRound, text: 'Sign in with Google' },
-  { icon: Download, text: 'Download a full backup any time' },
-  { icon: LockKeyhole, text: 'Data kept even if your plan lapses' },
-];
+export const heroTicks = ['From $9 a month', 'Two-minute setup', 'Google sign-in'];
 
-export interface TourItem {
-  id: string;
-  icon: LucideIcon;
-  label: string;
+export type ChapterId = 'attendance' | 'marks' | 'fees' | 'parents' | 'reports';
+
+export interface Chapter {
+  id: ChapterId;
+  time: string;
+  moment: string;
   title: string;
   text: string;
-  image: string;
-  alt: string;
 }
 
-export const tour: TourItem[] = [
-  {
-    id: 'marks',
-    icon: PenLine,
-    label: 'Marks entry',
-    title: 'Type a mark, press Enter',
-    text: 'A keyboard-first sheet: Enter moves to the next student, A marks absent. Percentages, grades and the class average update as you type.',
-    image: '/product/marks.webp',
-    alt: 'Marks entry sheet for a Class XII chemistry weekly test, with marks, percentages and grades for each student',
-  },
+/** A tuition center's day, from the first batch to the last parent message. */
+export const day: Chapter[] = [
   {
     id: 'attendance',
-    icon: CalendarCheck,
-    label: 'Attendance',
-    title: 'Attendance in a few taps',
-    text: 'Everyone starts present. Tap the students who are absent, save, and message their parents on WhatsApp.',
-    image: '/product/attendance.webp',
-    alt: 'Attendance screen with today’s batches and a list of students marked present',
+    time: '6:00 AM',
+    moment: 'Morning batch',
+    title: 'Attendance before the first sum.',
+    text: 'Everyone starts present. Tap the two who didn’t come and save. The app lines up a WhatsApp message for each of their parents; you check it and send.',
+  },
+  {
+    id: 'marks',
+    time: '5:30 PM',
+    moment: 'Weekly test',
+    title: 'Marks in as fast as you can type.',
+    text: 'Type a mark and press Enter for the next student. Press A for absent. Percentages, grades and the class average update as you go.',
   },
   {
     id: 'fees',
-    icon: IndianRupee,
-    label: 'Fees',
-    title: 'Know who has paid',
-    text: 'Monthly invoices for every student, with billed, collected, outstanding and overdue at a glance. Invoices show your UPI ID.',
-    image: '/product/fees.webp',
-    alt: 'Fees screen showing October billed, collected, outstanding and overdue amounts with a list of invoices',
+    time: '7:00 PM',
+    moment: 'Fee follow-up',
+    title: 'Know who hasn’t paid, without the fee book.',
+    text: 'Each month’s invoices are made for you, with your UPI ID on them. See billed, collected and overdue at a glance, and remind a parent on WhatsApp from the same list.',
   },
   {
-    id: 'students',
-    icon: UserRound,
-    label: 'Student profiles',
-    title: 'Every student on one page',
-    text: 'Scores against the class average, class rank, attendance and parent contact, with a progress message ready to send.',
-    image: '/product/student.webp',
-    alt: 'Student profile with average, class rank, highest score, attendance and a score-by-exam chart',
+    id: 'parents',
+    time: '9:00 PM',
+    moment: 'Parents ask',
+    title: 'Parents check results. Your phone stays quiet.',
+    text: 'Share one results link. Parents enter the exam password you sent and see their child’s batch: marks, class average and toppers. No app, no account.',
   },
   {
     id: 'reports',
-    icon: FileText,
-    label: 'Report cards',
-    title: 'Report cards, ready to print',
-    text: 'One page per student with scores, grades, a trend line and remarks. Print one student or a whole batch as PDF.',
-    image: '/product/report-card.webp',
-    alt: 'Printable progress report card with average, grade, class rank, attendance and a score chart',
-  },
-  {
-    id: 'insights',
-    icon: Lightbulb,
-    label: 'Insights',
-    title: 'See who needs help',
-    text: 'Top students per class, students who are dropping or missing classes, and how each batch and teacher is doing.',
-    image: '/product/insights.webp',
-    alt: 'Insights screen with the top three students per class and a center leaderboard',
+    time: 'Term end',
+    moment: 'Parent-teacher meeting',
+    title: 'Report cards for the whole batch, in one click.',
+    text: 'One page per student with scores, grades, a trend line and remarks. Print a single card or the whole batch as a PDF.',
   },
 ];
 
-export const capabilities: { icon: LucideIcon; title: string; text: string }[] = [
-  { icon: Layers, title: 'Classes and batches', text: 'Each batch has its own days, timing, teacher, room, seats and monthly fee.' },
-  { icon: ClipboardList, title: 'Your own exam types', text: 'Weekly, slip, unit or mock tests. Plan how many and track what’s done.' },
-  { icon: MessageCircle, title: 'WhatsApp to parents', text: 'Results, progress and absence messages are written for you. Check, then send.' },
-  { icon: Smartphone, title: 'Made for phones too', text: 'A bottom tab bar on phones, so attendance and marks can be done in class.' },
-  { icon: Upload, title: 'Bring your registers', text: 'Paste your student list or marks straight from Excel or Google Sheets.' },
-  { icon: Trophy, title: 'Ranks worked out', text: 'Class ranks, most improved and top performers, updated after every test.' },
-  { icon: Building2, title: 'More than one branch', text: 'Run every branch from one login. Each extra branch is $5 a month.' },
-  { icon: Download, title: 'Exports and backups', text: 'Marks, students and rankings as CSV, and a full backup whenever you want.' },
-];
-
-/** The real pre-filled message the app builds on a student's profile (demo data). */
+/** The real pre-filled message the app builds on a student's profile (sample data). */
 export const whatsappMessage = {
   parent: 'Deepa Gupta',
   lines: [
@@ -119,38 +76,39 @@ export const whatsappMessage = {
     '• Weekly 07 · Physics (14 Oct): 41/50',
     'Average this year: 80.9% · class rank 5 of 20.',
   ],
-  time: '7:42 pm',
+  time: '9:04 pm',
 };
 
-export const parentPoints = [
-  'One link for every class and test, updated as you enter marks',
-  'Each exam has a password, so parents see only their child’s batch',
-  'Use your own address, like results.yourcenter.com',
+export const extras: { icon: LucideIcon; title: string; text: string }[] = [
+  { icon: Layers, title: 'Classes and batches', text: 'Days, timing, teacher, room, seats and monthly fee for every batch.' },
+  { icon: ClipboardList, title: 'Exam plans', text: 'Your own test types, from slip tests to mock exams, with a target for each.' },
+  { icon: UserRound, title: 'Student profiles', text: 'Score trend against the class, rank, attendance and parent contact.' },
+  { icon: Lightbulb, title: 'Insights', text: 'Who is slipping, who is missing class, and how each batch is doing.' },
+  { icon: Upload, title: 'Bulk add', text: 'Paste your student list straight from Excel or Google Sheets.' },
+  { icon: Building2, title: 'Branches', text: 'Run every branch from one login. Extra branches are $5 a month.' },
+  { icon: Download, title: 'Exports and backups', text: 'CSV exports, and a full backup of your center whenever you want.' },
+  { icon: ShieldCheck, title: 'Your data, kept apart', text: 'Each center has its own workspace. Data is kept even if a plan lapses.' },
 ];
 
-export const steps = [
-  { title: 'Sign in with Google', sub: 'One click' },
-  { title: 'Pick a plan', sub: 'From $9 a month' },
-  { title: 'Set up your center', sub: 'About two minutes' },
-  { title: 'Add your students', sub: 'Paste the whole list' },
-];
+export const startSteps = ['Sign in with Google', 'Pick a plan', 'Set up your center in two minutes'];
 
 /* Keep in step with power-my-tutor/src/lib/plans.ts (prices are set up in Dodo Payments). */
 export const plans = [
-  { id: 'starter', name: 'Starter', monthly: 9, yearly: 90, students: 300, blurb: 'For a single tutor or a small center.', tag: '' },
-  { id: 'growth', name: 'Growth', monthly: 19, yearly: 190, students: 1000, blurb: 'For established centers with several batches.', tag: 'Best for several batches' },
-  { id: 'pro', name: 'Pro', monthly: 49, yearly: 490, students: null, blurb: 'For large centers. No student limit.', tag: '' },
+  { id: 'starter', name: 'Starter', monthly: 9, yearly: 90, students: 300, blurb: 'For a single tutor or a small center.', note: '' },
+  { id: 'growth', name: 'Growth', monthly: 19, yearly: 190, students: 1000, blurb: 'For established centers with several batches.', note: 'Best for several batches' },
+  { id: 'pro', name: 'Pro', monthly: 49, yearly: 490, students: null, blurb: 'For large centers. No student limit.', note: '' },
 ] as const;
 
 export const branchAddon = { monthly: 5, yearly: 50 };
 
 export const included = [
-  'Students, batches and attendance',
-  'Exams, marks entry and report cards',
-  'Fees and monthly invoices',
+  'Attendance and batches',
+  'Marks entry and exams',
+  'Report cards',
+  'Fees and invoices',
   'Results link for parents',
-  'WhatsApp messages to parents',
-  'CSV exports and full backups',
+  'WhatsApp messages',
+  'CSV exports and backups',
 ];
 
 export const faqs: { q: string; a: string }[] = [

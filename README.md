@@ -22,18 +22,28 @@ and Inter (body), the same as the app. Brand tokens in `tailwind.config.ts` matc
 | `src/lib/site.ts` | Name, domain, app/sign-up/log-in links, nav |
 | `src/lib/content.ts` | Every word on the home page: features, steps, plans, FAQs |
 | `src/components/sections/` | One file per home page section |
-| `src/components/ui/` | Logo, browser and phone frames, the WhatsApp message recreation |
+| `src/components/ui/` | Logo, browser and phone frames, callout pins, the WhatsApp message recreation |
 | `public/product/` | Real app screenshots (WebP, 2x/3x) |
+
+The page: hero (laptop + phone) → "Built around a tuition center's day" (6 AM attendance, 5:30 PM
+marks, 7 PM fees, 9 PM parents, term-end report cards) → spec list → pricing → FAQ → closing band.
 
 ## Screenshots
 
 `public/product/*.webp` are real captures of the app with its fictional sample center,
 "Apex Science Institute". They were taken from a private local copy of the app with its own
-throwaway database — no customer data. The WhatsApp message in the "For parents" section is a
+throwaway database — no customer data. The WhatsApp message in the 9 PM chapter is a
 recreation, but its text is exactly what the app pre-fills for that sample student.
 
-When the app's screens change, recapture them at 1440 × 900 (2x) for desktop crops and
-390 × 844 (3x) for phone shots, and keep the same file names.
+How they were made, so they can be redone when the app changes:
+
+- `hero-dashboard` — whole window at 1440 × 900, 2x. `hero-phone`, `results-phone` — 390 × 844, 3x.
+- `att-list`, `att-parents`, `fees-stats`, `fees-overdue` — single app cards captured as element
+  screenshots at a 1060 px wide window (2x), so the cards are compact and readable; corners made
+  transparent so they can carry a shadow.
+- `marks-sheet` — main area at 1440 × 900 (2x) with the cursor in roll 03's mark box, cropped to the
+  left of the Remarks column. The callout pins in `DaySection.tsx` are placed in % of this image.
+- `report-card` — the printed report card page, top of the paper.
 
 ## Keep in step with the app
 

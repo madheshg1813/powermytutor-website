@@ -9,8 +9,8 @@ export const site = {
   description:
     'Run your tuition center in one app: students, batches, attendance, marks, fees and report cards, with results parents can check on their phone. From $9 a month.',
   nav: [
+    { label: 'How it works', href: '#day' },
     { label: 'Features', href: '#features' },
-    { label: 'For parents', href: '#parents' },
     { label: 'Pricing', href: '#pricing' },
     { label: 'FAQ', href: '#faq' },
   ],

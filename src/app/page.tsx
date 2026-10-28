@@ -1,14 +1,11 @@
-import { Capabilities } from '@/components/sections/Capabilities';
+import { DaySection } from '@/components/sections/DaySection';
+import { Extras } from '@/components/sections/Extras';
 import { Faq } from '@/components/sections/Faq';
 import { FinalCta } from '@/components/sections/FinalCta';
 import { Footer } from '@/components/sections/Footer';
 import { Header } from '@/components/sections/Header';
 import { Hero } from '@/components/sections/Hero';
-import { HowItWorks } from '@/components/sections/HowItWorks';
-import { Parents } from '@/components/sections/Parents';
 import { Pricing } from '@/components/sections/Pricing';
-import { ProductTour } from '@/components/sections/ProductTour';
-import { TrustStrip } from '@/components/sections/TrustStrip';
 import { faqs, plans } from '@/lib/content';
 import { site } from '@/lib/site';
 
@@ -53,11 +50,8 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <TrustStrip />
-        <ProductTour />
-        <Capabilities />
-        <Parents />
-        <HowItWorks />
+        <DaySection />
+        <Extras />
         <Pricing />
         <Faq />
         <FinalCta />
