@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+    /* Anchored sections clear the sticky header. */
+    scroll-padding-top: 76px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  body {
+    @apply bg-white font-sans text-ink antialiased;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+  }
+  ::selection {
+    @apply bg-ink text-white;
+  }
+  a:focus-visible,
+  button:focus-visible,
+  summary:focus-visible {
+    @apply rounded-md outline-none ring-2 ring-ink/40 ring-offset-2 ring-offset-white;
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-content px-4 sm:px-8;
+  }
+  .section {
+    @apply py-12 sm:py-20 lg:py-24;
+  }
+  .eyebrow-text {
+    @apply text-[11px] font-semibold uppercase tracking-[0.16em] text-brand sm:text-xs;
+  }
+  .h2 {
+    @apply text-balance font-display text-[1.6rem] font-extrabold leading-[1.15] tracking-tight text-ink sm:text-[2.25rem];
+  }
+  .lead {
+    @apply text-pretty text-[15px] leading-relaxed text-ink-soft sm:text-[17px];
+  }
+
+  .btn {
+    @apply inline-flex shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-full px-4 py-2.5 text-sm font-semibold transition duration-150 sm:px-5 sm:text-[15px];
+  }
+  .btn-primary {
+    @apply btn bg-brand text-white shadow-sm hover:bg-brand-hover;
+  }
+  .btn-ghost {
+    @apply btn border border-ink/15 bg-white text-ink hover:border-ink/30 hover:shadow-soft;
+  }
+  .btn-on-ink {
+    @apply btn border border-white/30 text-white hover:border-white/60;
+  }
+  .btn-sm {
+    @apply px-3.5 py-2 text-[13px] sm:px-4 sm:text-sm;
+  }
+
+  .card {
+    @apply rounded-2xl border border-ink/10 bg-white sm:rounded-3xl;
+  }
+}
+
+@layer utilities {
+  /* Faint neutral grid behind the hero, fading out towards the edges. */
+  .grid-backdrop {
+    background-image: linear-gradient(to right, rgba(28, 25, 23, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(28, 25, 23, 0.05) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 30%, transparent 75%);
+  }
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+}
