@@ -73,10 +73,11 @@ const visuals: Record<ChapterId, () => React.ReactNode> = {
     </div>
   ),
   parents: () => (
-    <div className="stage px-4 pb-0 pt-6 sm:px-10 sm:pt-10">
+    <div className="stage px-4 pb-5 pt-6 sm:px-10 sm:pb-0 sm:pt-10">
+      {/* On phones the chat stays in the flow (pulled up over the phone) so the stage grows to fit the whole message. */}
       <div className="relative mx-auto max-w-[460px]">
         <div className="flex justify-end">
-          <PhoneFrame className="w-[56%] translate-y-6 sm:w-[250px]">
+          <PhoneFrame className="w-[56%] sm:w-[250px] sm:translate-y-6">
             <Image
               src="/product/results-phone.webp"
               alt="The results page a parent sees: Monthly 2 for Class XII, class average 67.4%, and the top three students"
@@ -86,7 +87,7 @@ const visuals: Record<ChapterId, () => React.ReactNode> = {
             />
           </PhoneFrame>
         </div>
-        <WhatsAppChat className="absolute left-0 top-[40%] w-[66%] sm:top-[34%] sm:w-[290px]" />
+        <WhatsAppChat className="relative -mt-[78%] w-[76%] sm:absolute sm:left-0 sm:top-[34%] sm:mt-0 sm:w-[290px]" />
       </div>
     </div>
   ),

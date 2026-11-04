@@ -26,10 +26,11 @@ export function Footer() {
           {columns.map((c) => (
             <nav key={c.title} aria-label={c.title}>
               <h2 className="font-sans text-[12px] font-semibold uppercase tracking-[0.14em] text-ink-faint">{c.title}</h2>
-              <ul className="mt-3 space-y-2.5">
+              <ul className="mt-1.5">
                 {c.links.map((l) => (
                   <li key={l.label}>
-                    <a href={l.href} className="text-[14px] text-ink-soft transition hover:text-ink">
+                    {/* Full-height rows keep each link an easy tap on phones. */}
+                    <a href={l.href} className="inline-flex min-h-10 items-center text-[14px] text-ink-soft transition hover:text-ink sm:min-h-9">
                       {l.label}
                     </a>
                   </li>

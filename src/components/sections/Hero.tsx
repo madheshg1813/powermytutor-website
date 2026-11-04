@@ -37,12 +37,14 @@ export function Hero() {
         </div>
       </div>
 
-      {/* The same center on a laptop and a phone. */}
+      {/* The same center on a laptop and a phone. The phone's right edge sits in the gap between the
+          dashboard's sidebar (17.2% of the screenshot) and its content (19.5%), so no sidebar text peeks
+          out; the phone runs off the bottom of the stage so nothing shows beneath it either. */}
       <div className="mx-auto mt-10 max-w-[1320px] sm:mt-14 sm:px-8">
-        <div className="stage h-[400px] rounded-none sm:h-[520px] sm:rounded-[28px] lg:h-[600px]">
+        <div className="stage h-[384px] rounded-none sm:h-[500px] sm:rounded-[28px] lg:h-[540px]">
           <BrowserFrame
             url="app.powermytutor.com/dashboard"
-            className="absolute left-[30%] top-8 w-[720px] sm:left-[24%] sm:top-12 sm:w-[920px] lg:left-[22%] lg:top-14 lg:w-[1080px]"
+            className="absolute left-[68px] top-8 w-[720px] sm:left-[108px] sm:top-12 sm:w-[920px] lg:left-[140px] lg:top-14 lg:w-[1160px]"
           >
             <Image
               src="/product/hero-dashboard.webp"
@@ -50,17 +52,17 @@ export function Hero() {
               width={2880}
               height={1800}
               priority
-              sizes="(min-width: 1024px) 1080px, (min-width: 640px) 920px, 720px"
+              sizes="(min-width: 1024px) 1160px, (min-width: 640px) 920px, 720px"
               className="h-auto w-full"
             />
           </BrowserFrame>
-          <PhoneFrame className="absolute left-[5%] top-5 w-[46%] max-w-[250px] sm:left-[6%] sm:top-9 sm:w-[230px] lg:left-[8%] lg:w-[250px]">
+          <PhoneFrame className="absolute left-4 top-5 w-[180px] sm:left-10 sm:top-9 sm:w-[230px] lg:left-24 lg:top-10 lg:w-[250px]">
             <Image
               src="/product/hero-phone.webp"
               alt="The same dashboard on a phone, with a bottom tab bar for Home, Students, Marks and Exams"
               fill
               priority
-              sizes="(min-width: 640px) 250px, 46vw"
+              sizes="(min-width: 640px) 250px, 180px"
               className="object-cover object-top"
             />
           </PhoneFrame>

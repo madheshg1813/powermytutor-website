@@ -11,7 +11,7 @@ export function BrowserFrame({ url, children, className = '' }: { url?: string; 
           <span className="h-2 w-2 rounded-full bg-ink/15 sm:h-2.5 sm:w-2.5" />
         </div>
         {url && (
-          <div className="mx-auto flex items-center gap-1.5 rounded-full bg-white px-3 py-0.5 text-[10px] text-ink-muted ring-1 ring-ink/[0.07] sm:text-xs">
+          <div className="mx-auto hidden items-center gap-1.5 md:flex rounded-full bg-white px-3 py-0.5 text-[10px] text-ink-muted ring-1 ring-ink/[0.07] sm:text-xs">
             <LockKeyhole className="h-2.5 w-2.5 sm:h-3 sm:w-3" strokeWidth={2} aria-hidden />
             {url}
           </div>

@@ -27,7 +27,7 @@ export function Pricing() {
                   role="radio"
                   aria-checked={period === v}
                   onClick={() => setPeriod(v)}
-                  className={`rounded-full px-4 py-1.5 text-[13px] font-semibold transition sm:text-sm ${
+                  className={`min-h-10 rounded-full px-4 py-2 text-[13px] font-semibold transition sm:min-h-0 sm:py-1.5 sm:text-sm ${
                     period === v ? 'bg-white text-ink shadow-[0_1px_2px_rgba(28,25,23,0.12)]' : 'text-ink-muted hover:text-ink'
                   }`}
                 >
@@ -74,7 +74,7 @@ export function Pricing() {
           </ul>
           <div className="border-t border-ink/10 bg-cream-soft/40 px-5 py-5 sm:px-8 sm:py-6">
             <p className="text-[13px] font-semibold text-ink sm:text-sm">Every plan includes</p>
-            <ul className="mt-3 grid gap-y-2 sm:flex sm:flex-wrap sm:gap-x-6">
+            <ul className="mt-3 grid gap-x-6 gap-y-2 sm:grid-cols-2 lg:grid-cols-4">
               {included.map((f) => (
                 <li key={f} className="flex items-center gap-1.5 text-[14px] text-ink-soft">
                   <Check className="h-4 w-4 text-green" strokeWidth={2.4} aria-hidden />
