@@ -9,6 +9,11 @@
     /* Anchored sections clear the sticky header. */
     scroll-padding-top: 72px;
   }
+  @media (min-width: 1024px) {
+    html {
+      scroll-padding-top: 88px;
+    }
+  }
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -36,6 +41,10 @@
 @layer components {
   .shell {
     @apply mx-auto w-full max-w-content px-4 sm:px-8;
+  }
+  /* The header and hero run wider than the rest of the page. */
+  .shell-wide {
+    @apply mx-auto w-full max-w-[1380px] px-4 sm:px-8 lg:px-10;
   }
   .h1 {
     @apply text-balance font-display text-[2.55rem] font-extrabold leading-[1] tracking-[-0.035em] text-ink sm:text-[3.9rem] lg:text-[4.6rem];

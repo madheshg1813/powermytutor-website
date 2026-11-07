@@ -2,11 +2,15 @@ import {
   Building2,
   ClipboardList,
   Download,
+  FileText,
   Layers,
   Lightbulb,
+  Link2,
   ShieldCheck,
+  Timer,
   Upload,
   UserRound,
+  Wallet,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -15,7 +19,24 @@ import {
  * /public/product are real captures of the app with its fictional sample center, Apex Science Institute.
  */
 
-export const heroTicks = ['From $9 a month', 'Two-minute setup', 'Google sign-in'];
+/** Hero checklist: each line is a part of the app that works today (no teacher or parent logins yet). */
+export const heroPoints = [
+  'Attendance & Performance Tracking',
+  'Exam & Report Card Management',
+  'Fee Invoices & WhatsApp Reminders',
+  'Results Link for Parents',
+];
+
+/**
+ * The strip under the hero. Product facts rather than customer counts: swap in real usage
+ * numbers only once there are real ones to show.
+ */
+export const heroFacts: { icon: LucideIcon; value: string; label: string; tone: 'green' | 'brand' }[] = [
+  { icon: Wallet, value: '$9/mo', label: 'Starting price', tone: 'green' },
+  { icon: Timer, value: '2 min', label: 'To set up your center', tone: 'brand' },
+  { icon: Link2, value: '1 link', label: 'Results for every parent', tone: 'green' },
+  { icon: FileText, value: '1 click', label: 'Report cards for a batch', tone: 'brand' },
+];
 
 export type ChapterId = 'attendance' | 'marks' | 'fees' | 'parents' | 'reports';
 

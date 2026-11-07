@@ -13,8 +13,9 @@ const config: Config = {
           faint: '#A8A29E',
         },
         cream: { soft: '#F5F1EA', line: '#EAE4DA' },
-        brand: { DEFAULT: '#EA5A2A', hover: '#D64C1F' },
+        brand: { DEFAULT: '#EA5A2A', hover: '#D64C1F', tint: '#FDEDE4' },
         green: { DEFAULT: '#168A4C', tint: '#E8F3EA' },
+        danger: { DEFAULT: '#B42318' },
       },
       fontFamily: {
         display: ['var(--font-sora)', 'system-ui', 'sans-serif'],
