@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "next dev -p 3300",
     "build": "next build",
-    "start": "next start",
+    "preview": "wrangler pages dev out --port 3310 --compatibility-date=2026-04-28",
+    "deploy": "next build && wrangler pages deploy out --project-name powermytutor-website --branch main",
+    "images": "node scripts/resize-images.mjs",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -22,7 +24,8 @@
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.6",
     "tailwindcss": "3.4.19",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "wrangler": "4.86.0"
   },
   "engines": {
     "node": ">=20.9"
