@@ -39,14 +39,13 @@ npm run deploy       # builds, then uploads out/ as the production deployment
 | `src/lib/site.ts` | Name, domain, app/sign-up/log-in links, nav |
 | `src/lib/content.ts` | Every word on the home page: features, steps, plans, FAQs |
 | `src/components/sections/` | One file per home page section |
-| `src/components/ui/` | Logo, browser and phone frames, callout pins, the WhatsApp message recreation |
+| `src/components/ui/` | Logo, browser and phone frames, callout pins, scroll reveal, the WhatsApp message recreation |
 | `public/product/` | Real app screenshots (WebP, 2x/3x), plus `-640/-1080/-1600` copies |
 | `src/lib/image-loader.ts` | Picks the right screenshot copy for each screen width (static hosting has no image optimizer) |
-| `src/components/ui/DashboardScreen.tsx` | The hero's dashboard, drawn in HTML/SVG (not a screenshot) from the app's own markup and sample data, laid out at 1440 × 900 and scaled to its frame. Update it when the app's dashboard changes |
 
-The page: hero (the drawn dashboard on a tilted card, then a strip of product facts) → "Built around
-a tuition center's day" (6 AM attendance, 5:30 PM marks, 7 PM fees, 9 PM parents, term-end report
-cards) → spec list → pricing → FAQ → closing band.
+The page: hero (the real dashboard screenshot with the phone docked over it) → at-a-glance facts → by
+hand vs with the app → feature cards for the five jobs of the day → product modules → how it works
+(3 setup steps and the day timeline) → laptop and phone → pricing → FAQ → closing band.
 
 If `npm run dev` sits at "Starting..." and never says "Ready", delete the `.next` folder and start
 it again. A leftover `.next` (after `npm run build`, or a dev server stopped mid-compile) causes it.
@@ -61,13 +60,11 @@ recreation, but its text is exactly what the app pre-fills for that sample stude
 How they were made, so they can be redone when the app changes:
 
 - `hero-dashboard` — whole window at 1440 × 900, 2x. `hero-phone`, `results-phone` — 390 × 844, 3x.
-  `hero-dashboard` and `hero-phone` are no longer on the page; `hero-dashboard` is kept as the
-  reference that `DashboardScreen.tsx` was drawn from.
 - `att-list`, `att-parents`, `fees-stats`, `fees-overdue` — single app cards captured as element
   screenshots at a 1060 px wide window (2x), so the cards are compact and readable; corners made
   transparent so they can carry a shadow.
 - `marks-sheet` — main area at 1440 × 900 (2x) with the cursor in roll 03's mark box, cropped to the
-  left of the Remarks column. The callout pins in `DaySection.tsx` are placed in % of this image.
+  left of the Remarks column. The callout pin in `Features.tsx` is placed in % of this image.
 - `report-card` — the printed report card page, top of the paper.
 
 After adding or replacing a screenshot, run `npm run images` to remake its 640/1080/1600 px copies.

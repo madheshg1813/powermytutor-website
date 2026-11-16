@@ -14,7 +14,7 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-ink/10 bg-white">
+    <footer className="border-t border-ink/[0.08] bg-paper">
       <div className="shell grid gap-8 py-10 sm:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)_minmax(0,1fr)] sm:py-14">
         <div className="max-w-xs">
           <Logo />
@@ -30,7 +30,7 @@ export function Footer() {
                 {c.links.map((l) => (
                   <li key={l.label}>
                     {/* Full-height rows keep each link an easy tap on phones. */}
-                    <a href={l.href} className="inline-flex min-h-10 items-center text-[14px] text-ink-soft transition hover:text-ink sm:min-h-9">
+                    <a href={l.href} className="inline-flex min-h-10 items-center text-[14px] text-ink-soft transition-colors hover:text-brand sm:min-h-9">
                       {l.label}
                     </a>
                   </li>

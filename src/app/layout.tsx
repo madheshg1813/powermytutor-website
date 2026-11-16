@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#FFFFFF',
+  themeColor: '#FDFBF7',
   width: 'device-width',
   initialScale: 1,
 };
@@ -33,7 +33,13 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en-IN" className={`${sora.variable} ${inter.variable}`}>
-      <body>{children}</body>
+      <body>
+        {/* Scroll-reveal starts hidden and is shown by script; without script, show everything. */}
+        <noscript>
+          <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
+        {children}
+      </body>
     </html>
   );
 }

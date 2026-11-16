@@ -1,11 +1,15 @@
-import { DaySection } from '@/components/sections/DaySection';
-import { Extras } from '@/components/sections/Extras';
+import { Experience } from '@/components/sections/Experience';
 import { Faq } from '@/components/sections/Faq';
+import { Features } from '@/components/sections/Features';
 import { FinalCta } from '@/components/sections/FinalCta';
 import { Footer } from '@/components/sections/Footer';
 import { Header } from '@/components/sections/Header';
 import { Hero } from '@/components/sections/Hero';
+import { HowItWorks } from '@/components/sections/HowItWorks';
+import { Metrics } from '@/components/sections/Metrics';
+import { Modules } from '@/components/sections/Modules';
 import { Pricing } from '@/components/sections/Pricing';
+import { Problems } from '@/components/sections/Problems';
 import { faqs, plans } from '@/lib/content';
 import { site } from '@/lib/site';
 
@@ -50,8 +54,12 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <DaySection />
-        <Extras />
+        <Metrics />
+        <Problems />
+        <Features />
+        <Modules />
+        <HowItWorks />
+        <Experience />
         <Pricing />
         <Faq />
         <FinalCta />

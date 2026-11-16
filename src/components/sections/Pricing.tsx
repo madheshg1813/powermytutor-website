@@ -1,7 +1,8 @@
 'use client';
 
-import { Check, Users } from 'lucide-react';
+import { ArrowRight, Check, Users } from 'lucide-react';
 import { useState } from 'react';
+import { Reveal } from '@/components/ui/Reveal';
 import { branchAddon, included, plans } from '@/lib/content';
 import { site } from '@/lib/site';
 
@@ -11,80 +12,94 @@ export function Pricing() {
   const [period, setPeriod] = useState<Period>('month');
 
   return (
-    <section id="pricing" aria-labelledby="pricing-title" className="bg-white py-16 sm:py-24">
+    <section id="pricing" aria-labelledby="pricing-title" className="section border-y border-ink/[0.07] bg-white">
       <div className="shell">
-        <div className="grid gap-5 lg:grid-cols-12 lg:items-end lg:gap-10">
-          <h2 id="pricing-title" className="h2 lg:col-span-7">
+        <Reveal className="mx-auto max-w-[720px] text-center">
+          <p className="eyebrow">Pricing</p>
+          <h2 id="pricing-title" className="h2 mt-4">
             Every feature in every plan. Pay by class size.
           </h2>
-          <div className="lg:col-span-5">
-            <p className="lead max-w-md">Plans differ only by how many active students you teach. Change plan whenever your center grows.</p>
-            <div role="radiogroup" aria-label="Billing period" className="mt-5 inline-flex rounded-full bg-cream-soft p-1 ring-1 ring-inset ring-ink/[0.06]">
-              {(['month', 'year'] as const).map((v) => (
-                <button
-                  key={v}
-                  type="button"
-                  role="radio"
-                  aria-checked={period === v}
-                  onClick={() => setPeriod(v)}
-                  className={`min-h-10 rounded-full px-4 py-2 text-[13px] font-semibold transition sm:min-h-0 sm:py-1.5 sm:text-sm ${
-                    period === v ? 'bg-white text-ink shadow-[0_1px_2px_rgba(28,25,23,0.12)]' : 'text-ink-muted hover:text-ink'
+          <p className="lead mt-4">Plans differ only by how many active students you teach. Change plan whenever your center grows.</p>
+          <div role="radiogroup" aria-label="Billing period" className="mt-7 inline-flex rounded-full bg-cream-soft p-1 ring-1 ring-inset ring-ink/[0.07]">
+            {(['month', 'year'] as const).map((v) => (
+              <button
+                key={v}
+                type="button"
+                role="radio"
+                aria-checked={period === v}
+                onClick={() => setPeriod(v)}
+                className={`rounded-full px-4 py-2 text-[14px] font-semibold transition duration-200 ${
+                  period === v ? 'bg-white text-ink shadow-[0_1px_3px_rgba(28,25,23,0.14)]' : 'text-ink-muted hover:text-ink'
+                }`}
+              >
+                {v === 'month' ? 'Monthly' : 'Yearly'}
+                {v === 'year' && <span className="ml-1.5 rounded-full bg-green-tint px-2 py-0.5 text-[12px] text-green">2 months free</span>}
+              </button>
+            ))}
+          </div>
+        </Reveal>
+
+        <ul className="mx-auto mt-10 grid max-w-[1040px] gap-4 sm:mt-14 md:grid-cols-3 md:items-center md:gap-5">
+          {plans.map((p, i) => {
+            const featured = p.id === 'growth';
+            const amount = period === 'month' ? p.monthly : p.yearly;
+            return (
+              <Reveal
+                as="li"
+                key={p.id}
+                delay={i * 80}
+                className={`relative flex flex-col rounded-[24px] border p-6 transition-shadow duration-300 sm:p-8 ${
+                  featured
+                    ? 'border-ink bg-ink text-white shadow-shot md:py-11'
+                    : 'border-ink/[0.1] bg-paper shadow-soft hover:shadow-lift'
+                }`}
+              >
+                {p.note && (
+                  <p className="absolute -top-3 left-6 rounded-full bg-brand px-3 py-1 text-[12px] font-semibold text-white shadow-glow sm:left-8">
+                    {p.note}
+                  </p>
+                )}
+                <h3 className={`font-display text-xl font-bold tracking-tight ${featured ? 'text-white' : 'text-ink'}`}>{p.name}</h3>
+                <p className={`mt-1.5 text-[14.5px] leading-snug md:min-h-[2.6rem] ${featured ? 'text-white/65' : 'text-ink-muted'}`}>{p.blurb}</p>
+                <p className="mt-6 flex items-baseline gap-1.5">
+                  <span className="num font-display text-[3rem] font-extrabold leading-none tracking-[-0.04em]">${amount}</span>
+                  <span className={`text-[14.5px] ${featured ? 'text-white/60' : 'text-ink-muted'}`}>/{period}</span>
+                </p>
+                <p
+                  className={`mt-6 flex items-center gap-2 border-t pt-5 text-[14.5px] font-medium ${
+                    featured ? 'border-white/15 text-white' : 'border-ink/10 text-ink'
                   }`}
                 >
-                  {v === 'month' ? 'Monthly' : 'Yearly'}
-                  {v === 'year' && <span className="ml-1.5 text-green">2 months free</span>}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
+                  <Users className={`h-4 w-4 ${featured ? 'text-white/70' : 'text-green'}`} strokeWidth={1.9} aria-hidden />
+                  {p.students ? `Up to ${p.students.toLocaleString('en-IN')} active students` : 'Unlimited students'}
+                </p>
+                <a
+                  href={site.signupUrl}
+                  className={`mt-6 w-full ${featured ? 'btn-primary' : 'btn-ghost'}`}
+                  aria-label={`Start with the ${p.name} plan`}
+                >
+                  Start with {p.name}
+                  <ArrowRight className="h-4 w-4" strokeWidth={2.2} aria-hidden />
+                </a>
+              </Reveal>
+            );
+          })}
+        </ul>
 
-        <div className="mt-10 overflow-hidden rounded-[22px] border border-ink/[0.12] sm:mt-12 sm:rounded-[28px]">
-          <ul className="grid divide-y divide-ink/10 md:grid-cols-3 md:divide-x md:divide-y-0">
-            {plans.map((p) => {
-              const featured = p.id === 'growth';
-              const amount = period === 'month' ? p.monthly : p.yearly;
-              return (
-                <li key={p.id} className={`flex flex-col p-5 sm:p-8 ${featured ? 'bg-cream-soft/70' : 'bg-white'}`}>
-                  <div className="flex items-start justify-between gap-4 md:block">
-                    <div>
-                      <p className="h-4 text-[12px] font-semibold text-green">{p.note}</p>
-                      <h3 className="mt-1 text-xl font-bold tracking-tight sm:text-2xl">{p.name}</h3>
-                      <p className="mt-1.5 max-w-[16rem] text-[14px] leading-snug text-ink-muted md:min-h-[2.6rem]">{p.blurb}</p>
-                    </div>
-                    <p className="mt-5 flex shrink-0 items-baseline gap-1 md:mt-7">
-                      <span className="num font-display text-[2.2rem] font-extrabold leading-none tracking-tight sm:text-[2.9rem]">${amount}</span>
-                      <span className="text-[14px] text-ink-muted">/{period}</span>
-                    </p>
-                  </div>
-                  <p className="mt-4 flex items-center gap-2 text-[14px] font-medium text-ink md:mt-5">
-                    <Users className="h-4 w-4" strokeWidth={1.8} aria-hidden />
-                    {p.students ? `Up to ${p.students.toLocaleString('en-IN')} active students` : 'Unlimited students'}
-                  </p>
-                  <a
-                    href={site.signupUrl}
-                    className={`mt-5 self-start md:mt-8 ${featured ? 'btn-primary' : 'btn-ghost'}`}
-                    aria-label={`Start with the ${p.name} plan`}
-                  >
-                    Start with {p.name}
-                  </a>
-                </li>
-              );
-            })}
+        <Reveal className="mx-auto mt-6 max-w-[1040px] rounded-[24px] border border-ink/[0.09] bg-cream-soft/60 p-6 sm:mt-8 sm:p-8">
+          <p className="font-display text-[15px] font-bold tracking-tight text-ink">Every plan includes</p>
+          <ul className="mt-4 grid gap-x-6 gap-y-2.5 sm:grid-cols-2 lg:grid-cols-4">
+            {included.map((f) => (
+              <li key={f} className="flex items-center gap-2 text-[14.5px] text-ink-soft">
+                <span className="flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-green text-white">
+                  <Check className="h-3 w-3" strokeWidth={3.5} aria-hidden />
+                </span>
+                {f}
+              </li>
+            ))}
           </ul>
-          <div className="border-t border-ink/10 bg-cream-soft/40 px-5 py-5 sm:px-8 sm:py-6">
-            <p className="text-[13px] font-semibold text-ink sm:text-sm">Every plan includes</p>
-            <ul className="mt-3 grid gap-x-6 gap-y-2 sm:grid-cols-2 lg:grid-cols-4">
-              {included.map((f) => (
-                <li key={f} className="flex items-center gap-1.5 text-[14px] text-ink-soft">
-                  <Check className="h-4 w-4 text-green" strokeWidth={2.4} aria-hidden />
-                  {f}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-        <p className="mt-4 text-[13px] leading-relaxed text-ink-muted">
+        </Reveal>
+        <p className="mx-auto mt-5 max-w-[1040px] text-center text-[13.5px] leading-relaxed text-ink-muted">
           One branch is included; each extra branch is ${branchAddon.monthly} a month (${branchAddon.yearly} a year). Prices in US dollars. No
           free trial; cancel any time from Settings.
         </p>

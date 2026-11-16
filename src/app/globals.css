@@ -7,20 +7,10 @@
     -webkit-tap-highlight-color: transparent;
     scroll-behavior: smooth;
     /* Anchored sections clear the sticky header. */
-    scroll-padding-top: 72px;
-  }
-  @media (min-width: 1024px) {
-    html {
-      scroll-padding-top: 88px;
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
+    scroll-padding-top: 84px;
   }
   body {
-    @apply bg-white font-sans text-ink antialiased;
+    @apply overflow-x-clip bg-paper font-sans text-ink antialiased;
     font-feature-settings: 'cv11', 'ss01';
   }
   h1,
@@ -29,59 +19,269 @@
     @apply font-display;
   }
   ::selection {
-    @apply bg-ink text-white;
+    @apply bg-brand text-white;
   }
   a:focus-visible,
   button:focus-visible,
   summary:focus-visible {
-    @apply rounded-md outline-none ring-2 ring-ink/40 ring-offset-2 ring-offset-white;
+    @apply rounded-md outline-none ring-2 ring-brand/60 ring-offset-2 ring-offset-paper;
   }
 }
 
 @layer components {
   .shell {
-    @apply mx-auto w-full max-w-content px-4 sm:px-8;
+    @apply mx-auto w-full max-w-content px-5 sm:px-8;
   }
-  /* The header and hero run wider than the rest of the page. */
-  .shell-wide {
-    @apply mx-auto w-full max-w-[1380px] px-4 sm:px-8 lg:px-10;
+  .section {
+    @apply py-16 sm:py-24;
   }
   .h1 {
-    @apply text-balance font-display text-[2.55rem] font-extrabold leading-[1] tracking-[-0.035em] text-ink sm:text-[3.9rem] lg:text-[4.6rem];
+    @apply text-balance font-display text-[2.5rem] font-extrabold leading-[1.02] tracking-[-0.04em] text-ink sm:text-[3.6rem] lg:text-[4.35rem];
   }
   .h2 {
-    @apply text-balance font-display text-[1.85rem] font-extrabold leading-[1.08] tracking-[-0.03em] text-ink sm:text-[2.6rem] lg:text-[2.9rem];
+    @apply text-balance font-display text-[1.8rem] font-extrabold leading-[1.08] tracking-[-0.032em] text-ink sm:text-[2.4rem] lg:text-[2.75rem];
   }
   .h3 {
-    @apply text-balance font-display text-[1.4rem] font-extrabold leading-[1.15] tracking-[-0.025em] text-ink sm:text-[1.75rem];
+    @apply text-balance font-display text-[1.3rem] font-bold leading-[1.18] tracking-[-0.025em] text-ink sm:text-[1.5rem];
   }
   .lead {
-    @apply text-pretty text-[15.5px] leading-relaxed text-ink-soft sm:text-[17px];
+    @apply text-pretty text-[16px] leading-relaxed text-ink-soft sm:text-[17.5px];
   }
-  .kicker {
-    @apply text-[12px] font-semibold uppercase tracking-[0.14em] text-ink-muted;
+  .body {
+    @apply text-pretty text-[15px] leading-relaxed text-ink-muted sm:text-[15.5px];
+  }
+  /* Small label above a section title. */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-[12.5px] font-semibold uppercase tracking-[0.13em] text-brand;
+  }
+  .eyebrow::before {
+    content: '';
+    @apply h-1.5 w-1.5 rounded-full bg-brand;
+  }
+  .eyebrow-green {
+    @apply text-green;
+  }
+  .eyebrow-green::before {
+    @apply bg-green;
   }
 
   .btn {
-    @apply inline-flex shrink-0 items-center justify-center gap-1.5 whitespace-nowrap rounded-full px-4 py-2.5 text-sm font-semibold transition duration-150 sm:px-5 sm:py-3 sm:text-[15px];
+    @apply inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-full px-5 py-3 text-[15px] font-semibold transition duration-200 ease-out active:translate-y-0 active:scale-[0.98];
+  }
+  .btn svg {
+    @apply transition-transform duration-200 ease-out;
+  }
+  .btn:hover svg {
+    @apply translate-x-0.5;
   }
   .btn-primary {
-    @apply btn bg-brand text-white shadow-[0_1px_0_rgba(255,255,255,0.25)_inset,0_1px_2px_rgba(28,25,23,0.15)] hover:bg-brand-hover;
+    @apply btn bg-brand text-white shadow-glow hover:-translate-y-0.5 hover:bg-brand-hover;
   }
   .btn-ghost {
-    @apply btn border border-ink/15 bg-white text-ink hover:border-ink/30;
+    @apply btn border border-ink/[0.14] bg-white text-ink shadow-[0_1px_2px_rgba(28,25,23,0.05)] hover:-translate-y-0.5 hover:border-ink/30;
   }
   .btn-on-ink {
-    @apply btn border border-white/25 text-white hover:border-white/60;
+    @apply btn border border-white/20 bg-white/[0.06] text-white hover:-translate-y-0.5 hover:border-white/50 hover:bg-white/10;
   }
   .btn-sm {
-    @apply px-3.5 py-2 text-[13px] sm:px-4 sm:py-2 sm:text-sm;
+    @apply px-4 py-2 text-[14px];
   }
 
-  /* A cream "desk" that real app screens sit on. */
+  .card {
+    @apply rounded-[24px] border border-ink/[0.09] bg-white shadow-soft;
+  }
+  /* A tinted "desk" that real app screens sit on, inside a card. */
   .stage {
-    @apply relative overflow-hidden rounded-[20px] bg-cream-soft sm:rounded-[28px];
-    box-shadow: inset 0 0 0 1px rgba(28, 25, 23, 0.05);
+    @apply relative overflow-hidden rounded-[18px] bg-cream-soft;
+    box-shadow: inset 0 0 0 1px rgba(28, 25, 23, 0.04);
+  }
+  .stage-orange {
+    background: linear-gradient(160deg, #fdeee7 0%, #f5f1ea 62%);
+  }
+  .stage-green {
+    background: linear-gradient(160deg, #e8f3ea 0%, #f5f1ea 62%);
+  }
+
+  /* ---- Hero (components/sections/Hero.tsx) ---- */
+
+  /* Warm white with an orange glow on the left, a green one on the right and a lift of light behind the headline. */
+  .hero-bg {
+    @apply pointer-events-none absolute inset-0;
+    background:
+      radial-gradient(46% 34% at 50% 20%, rgba(255, 255, 255, 0.92), transparent 72%),
+      radial-gradient(52% 48% at -4% 4%, rgba(234, 90, 42, 0.115), transparent 70%),
+      radial-gradient(50% 46% at 104% 10%, rgba(22, 138, 76, 0.1), transparent 70%),
+      linear-gradient(to bottom, #fffdfa 0%, #fdfbf7 60%);
+  }
+  .hero-title {
+    @apply font-display font-extrabold text-ink;
+    font-size: clamp(1.9rem, 10.4vw, 3rem);
+    line-height: 1.02;
+    letter-spacing: -0.045em;
+  }
+  @media (min-width: 640px) {
+    .hero-title {
+      font-size: clamp(2.9rem, min(7.2vw, 8.8vh), 5.1rem);
+      line-height: 0.99;
+      letter-spacing: -0.05em;
+    }
+  }
+  /* The orange stroke that draws itself under "Sorted." */
+  .hero-underline {
+    @apply pointer-events-none absolute left-0 w-full overflow-visible text-brand;
+    bottom: -0.1em;
+    height: 0.16em;
+  }
+  .hero-underline path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 0.085em;
+    stroke-linecap: round;
+    vector-effect: non-scaling-stroke;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: hero-draw 0.7s cubic-bezier(0.3, 0.7, 0.2, 1) 0.75s forwards;
+  }
+  @keyframes hero-draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .hero-cta {
+    @apply inline-flex h-[52px] items-center justify-center gap-2 whitespace-nowrap rounded-full px-7 text-[15.5px] font-semibold tracking-[-0.01em] transition duration-200 ease-out hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98];
+  }
+  .hero-cta svg {
+    @apply transition-transform duration-200 ease-out;
+  }
+  .hero-cta-primary {
+    @apply bg-brand text-white hover:bg-brand-hover;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      inset 0 -1px 0 rgba(28, 25, 23, 0.14),
+      0 1px 2px rgba(28, 25, 23, 0.2),
+      0 12px 26px -12px rgba(234, 90, 42, 0.62);
+  }
+  .hero-cta-primary:hover {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.3),
+      inset 0 -1px 0 rgba(28, 25, 23, 0.14),
+      0 2px 4px rgba(28, 25, 23, 0.18),
+      0 18px 32px -12px rgba(234, 90, 42, 0.68);
+  }
+  .hero-cta-primary:hover svg {
+    @apply translate-x-0.5;
+  }
+  .hero-cta-secondary {
+    @apply bg-white text-ink;
+    box-shadow:
+      inset 0 0 0 1px rgba(28, 25, 23, 0.13),
+      0 1px 2px rgba(28, 25, 23, 0.05),
+      0 10px 22px -16px rgba(28, 25, 23, 0.3);
+  }
+  .hero-cta-secondary:hover {
+    box-shadow:
+      inset 0 0 0 1px rgba(28, 25, 23, 0.3),
+      0 2px 4px rgba(28, 25, 23, 0.06),
+      0 16px 28px -16px rgba(28, 25, 23, 0.34);
+  }
+  .hero-cta-secondary:hover svg {
+    @apply translate-y-0.5;
+  }
+
+  /* A glass tray holding the browser window, for depth against the glow. */
+  .hero-tray {
+    @apply relative rounded-[18px] bg-white/60 p-1.5 backdrop-blur-sm sm:rounded-[28px] sm:p-2.5;
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.9),
+      0 0 0 1px rgba(28, 25, 23, 0.06),
+      0 2px 4px rgba(28, 25, 23, 0.04),
+      0 16px 32px -12px rgba(28, 25, 23, 0.1),
+      0 60px 110px -40px rgba(28, 25, 23, 0.34);
+  }
+  .hero-window {
+    @apply overflow-hidden rounded-[13px] bg-white sm:rounded-[19px];
+    box-shadow: 0 0 0 1px rgba(28, 25, 23, 0.09);
+  }
+
+  /* The phone is sized in container units, so it keeps its proportions at any width. */
+  .hero-phone {
+    container-type: inline-size;
+  }
+  .hero-phone-body {
+    @apply relative bg-ink;
+    padding: 3.2cqw;
+    border-radius: 15.5cqw;
+    box-shadow:
+      inset 0 0 0 0.5cqw #3a3531,
+      0 0 0 1px rgba(28, 25, 23, 0.9),
+      0 2px 4px rgba(28, 25, 23, 0.1),
+      0 18px 30px -10px rgba(28, 25, 23, 0.28),
+      0 44px 70px -24px rgba(28, 25, 23, 0.45);
+  }
+  .hero-phone-btn {
+    @apply absolute bg-ink;
+    width: 1.1cqw;
+  }
+  .hero-phone-screen {
+    @apply relative overflow-hidden bg-white;
+    border-radius: 12.6cqw;
+  }
+  .hero-phone-status {
+    @apply relative flex items-center justify-between font-semibold text-ink;
+    height: 12.5cqw;
+    padding: 2cqw 8.5cqw 0;
+    font-size: 4.3cqw;
+  }
+  .hero-phone-status svg {
+    width: 4.6cqw;
+    height: 4.6cqw;
+  }
+  .hero-phone-island {
+    @apply absolute left-1/2 -translate-x-1/2 rounded-full bg-ink;
+    top: 3.2cqw;
+    width: 29cqw;
+    height: 8.4cqw;
+  }
+
+  /* ---- Features (components/sections/Features.tsx) ---- */
+
+  /* The surface a real app screen sits on inside a feature card. */
+  .feat-stage {
+    @apply relative overflow-hidden rounded-[20px];
+    background-color: #f6f3ec;
+    box-shadow:
+      inset 0 0 0 1px rgba(28, 25, 23, 0.05),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
+  .feat-green {
+    background-image: radial-gradient(90% 70% at 12% 0%, rgba(22, 138, 76, 0.11), transparent 70%);
+  }
+  .feat-orange {
+    background-image: radial-gradient(90% 70% at 88% 0%, rgba(234, 90, 42, 0.11), transparent 70%);
+  }
+  /* A screen that deliberately runs off the stage: framed on the top-left, clipped by the stage on the other sides. */
+  .feat-window {
+    @apply overflow-hidden rounded-tl-[14px] sm:rounded-tl-[18px];
+    background-color: #f4f0e8;
+    box-shadow:
+      0 0 0 1px rgba(28, 25, 23, 0.09),
+      0 24px 48px -20px rgba(28, 25, 23, 0.28);
+  }
+
+  /* Scroll reveal; see components/ui/Reveal.tsx. */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+      transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
+  }
+  .reveal[data-in='true'] {
+    opacity: 1;
+    transform: none;
   }
 }
 
@@ -102,9 +302,30 @@
     -webkit-mask-composite: source-in;
   }
   .lift {
-    filter: drop-shadow(0 1px 1px rgba(28, 25, 23, 0.06)) drop-shadow(0 18px 30px rgba(28, 25, 23, 0.14));
+    filter: drop-shadow(0 1px 1px rgba(28, 25, 23, 0.06)) drop-shadow(0 18px 30px rgba(28, 25, 23, 0.16));
   }
   .num {
     font-variant-numeric: tabular-nums;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+

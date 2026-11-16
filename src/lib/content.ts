@@ -1,16 +1,17 @@
 import {
   Building2,
+  CalendarCheck,
   ClipboardList,
-  Download,
   FileText,
+  MessageCircle,
+  PencilLine,
+  Receipt,
+  Download,
   Layers,
   Lightbulb,
-  Link2,
   ShieldCheck,
-  Timer,
   Upload,
   UserRound,
-  Wallet,
   type LucideIcon,
 } from 'lucide-react';
 
@@ -19,24 +20,7 @@ import {
  * /public/product are real captures of the app with its fictional sample center, Apex Science Institute.
  */
 
-/** Hero checklist: each line is a part of the app that works today (no teacher or parent logins yet). */
-export const heroPoints = [
-  'Attendance & Performance Tracking',
-  'Exam & Report Card Management',
-  'Fee Invoices & WhatsApp Reminders',
-  'Results Link for Parents',
-];
-
-/**
- * The strip under the hero. Product facts rather than customer counts: swap in real usage
- * numbers only once there are real ones to show.
- */
-export const heroFacts: { icon: LucideIcon; value: string; label: string; tone: 'green' | 'brand' }[] = [
-  { icon: Wallet, value: '$9/mo', label: 'Starting price', tone: 'green' },
-  { icon: Timer, value: '2 min', label: 'To set up your center', tone: 'brand' },
-  { icon: Link2, value: '1 link', label: 'Results for every parent', tone: 'green' },
-  { icon: FileText, value: '1 click', label: 'Report cards for a batch', tone: 'brand' },
-];
+export const heroTicks = ['From $9 a month', 'Two-minute setup', 'Google sign-in'];
 
 export type ChapterId = 'attendance' | 'marks' | 'fees' | 'parents' | 'reports';
 
@@ -110,6 +94,65 @@ export const extras: { icon: LucideIcon; title: string; text: string }[] = [
   { icon: Download, title: 'Exports and backups', text: 'CSV exports, and a full backup of your center whenever you want.' },
   { icon: ShieldCheck, title: 'Your data, kept apart', text: 'Each center has its own workspace. Data is kept even if a plan lapses.' },
 ];
+
+/** Who the app is for, as named in the FAQ. */
+export const audience = ['Tuition centers', 'Coaching institutes', 'Academies', 'Test-prep centers'];
+
+/** Plain facts about getting started; no customer numbers are claimed. */
+export const metrics = [
+  { value: '$9', label: 'a month to start', sub: 'Starter covers up to 300 students' },
+  { value: '2 min', label: 'to set up your center', sub: 'Sign in with Google and go' },
+  { value: '0', label: 'apps to install', sub: 'Runs in the browser, for you and for parents' },
+  { value: 'All', label: 'features in every plan', sub: 'Plans differ only by student count' },
+];
+
+/** The work a center does by hand today, and what the app does instead. */
+export const problems: { area: string; before: string; after: string }[] = [
+  {
+    area: 'Attendance',
+    before: 'A paper register, then calling parents one by one.',
+    after: 'Tap who is absent. A WhatsApp message is lined up for each parent.',
+  },
+  {
+    area: 'Marks',
+    before: 'Marks typed into a spreadsheet, percentages worked out by hand.',
+    after: 'Type a mark, press Enter. Percentages, grades and the class average update live.',
+  },
+  {
+    area: 'Fees',
+    before: 'A fee book that can’t tell you who is overdue.',
+    after: 'Invoices made each month, with billed, collected and overdue at a glance.',
+  },
+  {
+    area: 'Results',
+    before: 'Parents messaging at night to ask for marks.',
+    after: 'One results link parents open on their own phone. No app, no account.',
+  },
+  {
+    area: 'Report cards',
+    before: 'Report cards written out student by student.',
+    after: 'A page per student, or the whole batch as one PDF.',
+  },
+];
+
+/** Short label and icon for each part of the day. */
+export const chapterMeta: Record<ChapterId, { label: string; icon: LucideIcon }> = {
+  attendance: { label: 'Attendance', icon: CalendarCheck },
+  marks: { label: 'Marks entry', icon: PencilLine },
+  fees: { label: 'Fees', icon: Receipt },
+  parents: { label: 'Parent updates', icon: MessageCircle },
+  reports: { label: 'Report cards', icon: FileText },
+};
+
+export const setupSteps = [
+  { title: 'Sign in with Google', text: 'Use the Google account you already have. There is nothing to install.' },
+  { title: 'Pick a plan', text: 'Starter, Growth or Pro, by how many active students you teach.' },
+  { title: 'Set up your center', text: 'Add your batches, then paste your student list from Excel or Google Sheets.' },
+];
+
+/** Points for the laptop-and-phone section; each is a screen or behaviour the app has today. */
+export const deskPoints = ['Search students, exams and batches', 'Add a student, schedule an exam or enter marks in one click', 'See who needs attention and who improved'];
+export const phonePoints = ['Bottom tab bar for Home, Students, Marks and Exams', 'Parents open results with an exam password, no account'];
 
 export const startSteps = ['Sign in with Google', 'Pick a plan', 'Set up your center in two minutes'];
 

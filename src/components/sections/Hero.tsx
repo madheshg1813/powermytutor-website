@@ -1,146 +1,143 @@
-import { CalendarDays, Check, Play } from 'lucide-react';
-import { DashboardScreen } from '@/components/ui/DashboardScreen';
-import { heroFacts, heroPoints } from '@/lib/content';
+import { ArrowDown, ArrowRight, BatteryFull, Check, LockKeyhole, Signal, Wifi } from 'lucide-react';
+import Image from 'next/image';
+import { heroTicks } from '@/lib/content';
 import { site } from '@/lib/site';
 
-export function Hero() {
+/** The browser window around the real dashboard capture, sitting in a glass tray. */
+function HeroBrowser() {
   return (
-    // Pulled up under the sticky header so the backdrop runs behind it.
-    <section id="top" className="relative -mt-16 overflow-hidden bg-[#FFFBF7] pt-16 lg:-mt-20 lg:pt-20">
-      <Backdrop />
-
-      <div className="shell-wide relative pb-12 sm:pb-16 lg:pb-20">
-        <div className="grid items-center gap-12 pt-8 sm:pt-12 lg:grid-cols-12 lg:gap-8 lg:pt-12 xl:gap-10">
-          <div className="lg:col-span-5">
-            <p className="inline-flex items-center gap-2 rounded-full bg-green-tint px-3.5 py-1.5 text-[13px] font-medium text-ink ring-1 ring-green/10 sm:px-4 sm:py-2 sm:text-[15px]">
-              <span className="h-2 w-2 rounded-full bg-green" aria-hidden />
-              Tuition &amp; Coaching Management Software
-            </p>
-
-            <h1 className="mt-6 sm:mt-7">
-              <span className="block whitespace-nowrap font-display text-[2.6rem] font-extrabold leading-[1.05] tracking-[-0.045em] text-ink sm:text-[4rem] lg:text-[clamp(2.75rem,calc(5.2vw-4px),4.25rem)]">
-                Power My{' '}
-                <span className="relative inline-block text-green">
-                  Tutor
-                  <Swoosh className="absolute -bottom-1.5 right-0 w-[78%] sm:-bottom-2" />
-                </span>
-              </span>
-              <span className="mt-5 block font-display text-[1.3rem] font-semibold leading-snug tracking-[-0.03em] text-ink-soft sm:mt-6 sm:text-[1.85rem] lg:text-[clamp(1.25rem,calc(2.4vw-3px),1.8rem)]">
-                Every batch, every mark, every fee.
-                <span className="block text-[2.1rem] font-bold leading-tight tracking-[-0.035em] text-green sm:text-[2.7rem] lg:text-[2.35rem] xl:text-[2.9rem]">
-                  Sorted<span className="text-brand">.</span>
-                </span>
-              </span>
-            </h1>
-
-            <p className="mt-4 max-w-[33rem] text-pretty text-[15.5px] leading-relaxed text-ink-soft sm:text-[18px] lg:text-[17px] xl:text-[18.5px]">
-              A complete management system for tuition centers and coaching institutes. Manage students, attendance, fees,
-              exams and reports, all in one place.
-            </p>
-
-            <ul className="mt-6 space-y-3 sm:mt-7">
-              {heroPoints.map((point) => (
-                <li key={point} className="flex items-center gap-3 text-[15.5px] font-medium text-ink sm:text-[17px] lg:text-[16px] xl:text-[17.5px]">
-                  <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-green text-white shadow-[0_2px_6px_-1px_rgba(22,138,76,0.45)]">
-                    <Check className="h-3.5 w-3.5" strokeWidth={3} aria-hidden />
-                  </span>
-                  {point}
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-8 flex flex-col gap-3 whitespace-nowrap sm:flex-row sm:flex-wrap xl:gap-4">
-              <a
-                href={site.signupUrl}
-                className="inline-flex items-center justify-center gap-2.5 rounded-xl bg-brand px-6 py-3.5 text-[16px] font-semibold text-white shadow-[0_1px_0_rgba(255,255,255,0.25)_inset,0_10px_24px_-10px_rgba(234,90,42,0.7)] transition hover:bg-brand-hover sm:py-4 sm:text-[17px]"
-              >
-                <CalendarDays className="h-5 w-5" strokeWidth={2} aria-hidden />
-                Start Your Center
-              </a>
-              <a
-                href="#day"
-                className="inline-flex items-center justify-center gap-2.5 rounded-xl border border-ink/10 bg-white px-6 py-3.5 text-[16px] font-semibold text-ink shadow-soft transition hover:border-ink/25 sm:py-4 sm:text-[17px]"
-              >
-                <Play className="h-4 w-4 text-brand" strokeWidth={2.4} aria-hidden />
-                See How It Works
-              </a>
-            </div>
+    <div className="hero-tray">
+      <div className="hero-window">
+        <div className="relative flex h-8 items-center border-b border-ink/[0.07] bg-gradient-to-b from-white to-cream-soft/70 px-3 sm:h-11 sm:px-4" aria-hidden>
+          <div className="flex gap-1.5 sm:gap-2">
+            <span className="h-2 w-2 rounded-full bg-ink/[0.14] sm:h-3 sm:w-3" />
+            <span className="h-2 w-2 rounded-full bg-ink/[0.14] sm:h-3 sm:w-3" />
+            <span className="h-2 w-2 rounded-full bg-ink/[0.14] sm:h-3 sm:w-3" />
           </div>
-
-          {/* The app's dashboard drawn in code (sample center), tilted slightly on wide screens. On phones
-              the card shows the top-left of the dashboard at a readable size instead of the whole window. */}
-          <div className="relative lg:col-span-7">
-            <Sparkle className="absolute -left-3 -top-9 hidden h-11 w-11 lg:block" />
-            <div className="[perspective:2400px]">
-              <div className="rounded-[18px] bg-white p-1.5 shadow-[0_1px_2px_rgba(28,25,23,0.06),0_40px_80px_-32px_rgba(28,25,23,0.38),0_12px_30px_-12px_rgba(28,25,23,0.12)] ring-1 ring-ink/[0.06] sm:rounded-[24px] sm:p-2 lg:origin-left lg:[transform:rotateY(-7deg)_rotateX(3deg)_rotate(1deg)] xl:-mr-6">
-                <div className="aspect-[5/4] overflow-hidden rounded-[13px] bg-cream-soft sm:aspect-auto sm:rounded-[17px]">
-                  <DashboardScreen
-                    label="The Power My Tutor dashboard: active students, exams with results, center average, pass rate, a class average chart and the exam plan"
-                    className="w-[160%] max-w-none sm:w-full"
-                  />
-                </div>
-              </div>
-            </div>
+          <div className="absolute left-1/2 flex h-5 w-[58%] max-w-[380px] -translate-x-1/2 items-center justify-center gap-1.5 rounded-md bg-white text-[10px] text-ink-muted shadow-[0_0_0_1px_rgba(28,25,23,0.07),0_1px_1px_rgba(28,25,23,0.04)] sm:h-7 sm:rounded-lg sm:text-[12.5px]">
+            <LockKeyhole className="h-2.5 w-2.5 text-ink-faint sm:h-3 sm:w-3" strokeWidth={2.2} />
+            app.powermytutor.com/dashboard
           </div>
         </div>
-
-        <ul className="relative mt-12 grid grid-cols-2 rounded-2xl bg-white shadow-[0_1px_2px_rgba(28,25,23,0.04),0_18px_40px_-20px_rgba(28,25,23,0.18)] ring-1 ring-ink/[0.05] sm:mt-16 lg:mt-20 lg:grid-cols-4 lg:py-6">
-          {heroFacts.map(({ icon: Icon, value, label, tone }, i) => (
-            <li
-              key={value}
-              className={`flex items-center gap-3 border-ink/10 p-4 sm:gap-4 sm:p-6 lg:px-8 lg:py-1 ${i % 2 === 1 ? 'border-l' : ''} ${
-                i < 2 ? 'border-b lg:border-b-0' : ''
-              } ${i === 2 ? 'lg:border-l' : ''}`}
-            >
-              <span
-                className={`grid h-10 w-10 shrink-0 place-items-center rounded-full sm:h-14 sm:w-14 ${
-                  tone === 'green' ? 'bg-green-tint text-green' : 'bg-brand-tint text-brand'
-                }`}
-              >
-                <Icon className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={1.9} aria-hidden />
-              </span>
-              <span className="min-w-0">
-                <span className="block whitespace-nowrap font-display text-[1.3rem] font-bold leading-none tracking-[-0.02em] text-ink sm:text-[1.85rem]">
-                  {value}
-                </span>
-                <span className="mt-1.5 block text-[12.5px] leading-snug text-ink-soft sm:text-[15px]">{label}</span>
-              </span>
-            </li>
-          ))}
-        </ul>
+        <Image
+          src="/product/hero-dashboard.webp"
+          alt="The Power My Tutor dashboard: active students, exams with results, center average, pass rate and a class average chart"
+          width={2880}
+          height={1800}
+          priority
+          sizes="(min-width: 1200px) 1120px, 100vw"
+          className="h-auto w-full"
+        />
       </div>
-    </section>
-  );
-}
-
-/** Soft peach and green shapes behind the hero. */
-function Backdrop() {
-  return (
-    <div aria-hidden className="pointer-events-none absolute inset-0">
-      <div className="absolute -bottom-48 -left-48 h-[560px] w-[560px] rounded-full bg-[#FBE0CD] opacity-70 blur-3xl" />
-      <div className="absolute -left-24 top-[38%] h-[360px] w-[300px] rounded-full bg-[#FDEBDD] opacity-80 blur-3xl" />
-      <div className="absolute right-[30%] top-16 hidden h-[260px] w-[440px] rounded-full bg-[#FAD3B8] opacity-70 blur-3xl lg:block" />
-      <div className="absolute left-[44%] top-[56%] hidden h-[300px] w-[420px] rounded-full bg-[#D5ECDA] opacity-80 blur-3xl lg:block" />
-      <div className="absolute right-[6%] top-[150px] hidden h-[130px] w-[300px] xl:h-[180px] xl:w-[400px] rounded-[50%_50%_45%_55%/70%_70%_30%_30%] bg-gradient-to-br from-[#3BAA61] to-green opacity-90 blur-[3px] lg:block" />
-      <div className="absolute -right-24 top-[34%] hidden h-[340px] w-[200px] rounded-[60%_40%_40%_60%/50%_50%_50%_50%] bg-gradient-to-b from-[#3BAA61] to-green opacity-90 blur-[3px] lg:block" />
     </div>
   );
 }
 
-/** The green stroke under "Tutor". */
-function Swoosh({ className = '' }: { className?: string }) {
+/** A phone with a status bar above the real mobile capture (1170 × 2532). */
+function HeroPhone() {
   return (
-    <svg viewBox="0 0 200 16" fill="none" preserveAspectRatio="none" className={className} aria-hidden>
-      <path d="M3 13C52 5.5 120 3 197 6.5" stroke="currentColor" strokeWidth="5" strokeLinecap="round" />
-    </svg>
+    <div className="hero-phone">
+      <div className="hero-phone-body">
+        <span className="hero-phone-btn -left-[1cqw] top-[19%] h-[5%] rounded-l-sm" aria-hidden />
+        <span className="hero-phone-btn -left-[1cqw] top-[27%] h-[8%] rounded-l-sm" aria-hidden />
+        <span className="hero-phone-btn -right-[1cqw] top-[25%] h-[12%] rounded-r-sm" aria-hidden />
+        <div className="hero-phone-screen">
+          <div className="hero-phone-status" aria-hidden>
+            <span className="num">9:41</span>
+            <span className="hero-phone-island" />
+            <span className="flex items-center gap-[1.4cqw]">
+              <Signal strokeWidth={2.6} />
+              <Wifi strokeWidth={2.6} />
+              <BatteryFull strokeWidth={2.2} />
+            </span>
+          </div>
+          <div className="relative aspect-[1170/2532]">
+            <Image
+              src="/product/hero-phone.webp"
+              alt="The same dashboard on a phone, with a bottom tab bar for Home, Students, Marks and Exams"
+              fill
+              priority
+              sizes="(min-width: 1200px) 230px, (min-width: 640px) 20vw, 54vw"
+              className="object-cover object-top"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
-/** Three short orange strokes at the dashboard's top-left corner. */
-function Sparkle({ className = '' }: { className?: string }) {
+export function Hero() {
   return (
-    <svg viewBox="0 0 44 44" fill="none" className={`text-brand ${className}`} aria-hidden>
-      <path d="M4 27l10 6M17 9l6 12M35 3v12" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
-    </svg>
+    // Pulled up under the sticky header so the glow runs to the top of the page. Vertical gaps scale with
+    // the viewport height, so the dashboard and phone reach the first screen on short windows too.
+    <section className="relative -mt-16 overflow-hidden pt-16 sm:-mt-[68px] sm:pt-[68px]">
+      <div className="hero-bg" aria-hidden />
+
+      <div className="shell relative pb-8 pt-[clamp(28px,6.4vh,64px)] sm:pb-10">
+        <div className="mx-auto max-w-[980px] text-center">
+          <h1 className="hero-title animate-rise">
+            <span className="block sm:inline">Every batch, </span>
+            <span className="block sm:inline">every mark,</span>{' '}
+            <span className="block">
+              every fee.{' '}
+              <span className="relative inline-block text-green">
+                Sorted.
+                <svg className="hero-underline" viewBox="0 0 300 12" preserveAspectRatio="none" aria-hidden>
+                  <path d="M3 8.5 C 70 2.5, 190 2, 297 6.5" pathLength={1} />
+                </svg>
+              </span>
+            </span>
+          </h1>
+
+          <p className="mx-auto mt-[clamp(16px,3vh,28px)] max-w-[620px] sm:max-w-[710px] animate-rise text-pretty text-[16.5px] leading-[1.6] text-ink-soft [animation-delay:120ms] sm:text-[18.5px] sm:leading-[1.55]">
+            Attendance, marks, fees, report cards and parent updates in one app built for tuition centers and coaching institutes.
+            On your phone and your laptop.
+          </p>
+
+          <div className="mx-auto mt-[clamp(20px,3.6vh,32px)] flex max-w-[400px] animate-rise flex-col justify-center gap-3 [animation-delay:180ms] sm:max-w-none sm:flex-row">
+            <a href={site.signupUrl} className="hero-cta hero-cta-primary">
+              Start your center
+              <ArrowRight className="h-4 w-4" strokeWidth={2.4} aria-hidden />
+            </a>
+            <a href="#day" className="hero-cta hero-cta-secondary">
+              See a day in the app
+              <ArrowDown className="h-4 w-4 text-ink-muted" strokeWidth={2.2} aria-hidden />
+            </a>
+          </div>
+
+          <ul className="mt-[clamp(14px,2.6vh,24px)] flex animate-rise flex-wrap items-center justify-center gap-x-6 gap-y-2.5 text-[13.5px] font-medium text-ink-soft [animation-delay:240ms] sm:text-[14px]">
+            {heroTicks.map((t) => (
+              <li key={t} className="flex items-center gap-2">
+                <span className="flex h-[18px] w-[18px] items-center justify-center rounded-full bg-green-tint text-green">
+                  <Check className="h-3 w-3" strokeWidth={3} aria-hidden />
+                </span>
+                {t}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* The same center on a laptop and a phone. */}
+        <div className="relative mx-auto mt-[clamp(30px,5.4vh,52px)] max-w-[1136px] animate-rise [animation-delay:320ms]">
+          <div
+            className="pointer-events-none absolute -inset-x-12 -top-12 bottom-16 rounded-[64px] opacity-70 blur-3xl"
+            style={{
+              background:
+                'radial-gradient(42% 55% at 18% 45%, rgba(234,90,42,0.17), transparent 70%), radial-gradient(42% 55% at 84% 40%, rgba(22,138,76,0.15), transparent 70%)',
+            }}
+            aria-hidden
+          />
+          <HeroBrowser />
+
+          {/* Under the dashboard on phones; docked over its sidebar from tablet up. */}
+          <div className="relative z-10 mx-auto -mt-10 w-[54%] max-w-[230px] sm:absolute sm:left-[-2.6%] sm:top-[13%] sm:mx-0 sm:mt-0 sm:w-[20.5%] sm:max-w-none xl:left-[-4.8%] xl:w-[21.5%]">
+            <div className="animate-float">
+              <HeroPhone />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
