@@ -9,7 +9,10 @@ import {
   Download,
   Layers,
   Lightbulb,
+  Link2,
+  MonitorSmartphone,
   ShieldCheck,
+  Timer,
   Upload,
   UserRound,
   type LucideIcon,
@@ -98,12 +101,12 @@ export const extras: { icon: LucideIcon; title: string; text: string }[] = [
 /** Who the app is for, as named in the FAQ. */
 export const audience = ['Tuition centers', 'Coaching institutes', 'Academies', 'Test-prep centers'];
 
-/** Plain facts about getting started; no customer numbers are claimed. */
-export const metrics = [
-  { value: '$9', label: 'a month to start', sub: 'Starter covers up to 300 students' },
-  { value: '2 min', label: 'to set up your center', sub: 'Sign in with Google and go' },
-  { value: '0', label: 'apps to install', sub: 'Runs in the browser, for you and for parents' },
-  { value: 'All', label: 'features in every plan', sub: 'Plans differ only by student count' },
+/** Plain product facts for the strip under the hero: no prices and no customer numbers. */
+export const metrics: { value: string; label: string; sub: string; icon: LucideIcon }[] = [
+  { value: '2 min', label: 'to set up your center', sub: 'Sign in with Google and go', icon: Timer },
+  { value: '0', label: 'apps to install', sub: 'Runs in the browser, for you and for parents', icon: MonitorSmartphone },
+  { value: '1 link', label: 'results for every parent', sub: 'They open it with the exam password, no account', icon: Link2 },
+  { value: '1 click', label: 'report cards for a batch', sub: 'A page per student, or the whole batch as a PDF', icon: FileText },
 ];
 
 /** The work a center does by hand today, and what the app does instead. */
