@@ -49,7 +49,7 @@ export function Problems() {
               <span className={`${laneLabel} bg-cream-soft/80 px-5 pb-3 pt-4 text-ink-muted`}>By hand</span>
               <span className={`${laneLabel} flex items-center gap-1.5 bg-green-tint/60 px-5 pb-3 pt-4 text-green`}>
                 With
-                <Image src="/brand/logo-160.png" alt="" width={20} height={20} className="h-5 w-5" unoptimized />
+                <Image src="/brand/logo-160.png" alt="" width={20} height={20} className="h-5 w-5" />
                 Power My Tutor
               </span>
             </div>

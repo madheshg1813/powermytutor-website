@@ -1,7 +1,7 @@
 import { Reveal } from '@/components/ui/Reveal';
 import { audience, metrics } from '@/lib/content';
 
-/** Who it is for, and four plain facts about using it. */
+/** Who it is for, and four plain facts about getting started. */
 export function Metrics() {
   return (
     <section aria-label="Power My Tutor at a glance" className="overflow-x-clip pb-16 pt-10 sm:pb-24 sm:pt-14">
@@ -41,53 +41,42 @@ export function Metrics() {
             }}
             aria-hidden
           />
-          <ul className="relative grid grid-cols-1 gap-3 min-[400px]:grid-cols-2 sm:gap-5 lg:grid-cols-4">
+          <ul className="relative grid grid-cols-1 gap-3 min-[360px]:grid-cols-2 sm:gap-5 lg:grid-cols-4">
             {metrics.map((m, i) => {
               const green = i % 2 === 1;
               const [figure, unit] = m.value.split(' ');
-              const Icon = m.icon;
               return (
                 <Reveal as="li" key={m.label} delay={i * 70} className="flex">
-                  <div
-                    className={`group relative flex w-full flex-col overflow-hidden rounded-[22px] border border-ink/[0.08] bg-white p-5 shadow-soft transition duration-300 ease-out hover:-translate-y-1 hover:shadow-lift sm:rounded-[26px] sm:p-7 ${
-                      green ? 'hover:border-green/30' : 'hover:border-brand/30'
-                    }`}
-                  >
-                    {/* A wash of the card's colour from its top corner. */}
+                  <div className="group relative flex w-full flex-col overflow-hidden rounded-[20px] border border-ink/[0.09] bg-white p-5 shadow-soft transition duration-300 ease-out hover:-translate-y-1 hover:border-ink/[0.16] hover:shadow-lift sm:rounded-[24px] sm:p-7">
+                    {/* A short accent rule that runs the full width on hover. */}
                     <span
-                      className="pointer-events-none absolute inset-0 opacity-70 transition-opacity duration-500 group-hover:opacity-100"
-                      style={{
-                        background: green
-                          ? 'radial-gradient(85% 65% at 0% 0%, rgba(22,138,76,0.09), transparent 70%)'
-                          : 'radial-gradient(85% 65% at 0% 0%, rgba(234,90,42,0.09), transparent 70%)',
-                      }}
+                      className={`absolute inset-x-5 top-0 h-[2px] origin-left scale-x-[0.22] rounded-full transition-transform duration-500 ease-out group-hover:scale-x-100 sm:inset-x-7 ${
+                        green ? 'bg-green' : 'bg-brand'
+                      }`}
                       aria-hidden
                     />
-                    <div className="relative flex items-start justify-between gap-3">
-                      <h3>
-                        <span
-                          className={`num flex items-baseline gap-1.5 font-display text-[2.6rem] font-extrabold leading-[0.9] tracking-[-0.05em] sm:text-[3.6rem] ${
-                            green ? 'text-green' : 'text-brand'
-                          }`}
-                        >
-                          {figure}
-                          {unit && <span className="text-[0.42em] font-bold tracking-[-0.02em]">{unit}</span>}
-                        </span>
-                        <span className="mt-4 block font-sans text-[15px] font-semibold leading-snug tracking-[-0.01em] text-ink sm:mt-5 sm:text-[17px]">
-                          {m.label}
-                        </span>
-                      </h3>
+                    <span
+                      className={`pointer-events-none absolute -right-12 -top-12 h-36 w-36 rounded-full opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100 ${
+                        green ? 'bg-green/[0.14]' : 'bg-brand/[0.14]'
+                      }`}
+                      aria-hidden
+                    />
+                    <h3 className="relative">
                       <span
-                        className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-xl transition duration-300 ease-out group-hover:text-white sm:h-11 sm:w-11 sm:rounded-[14px] ${
-                          green
-                            ? 'bg-green-tint text-green shadow-[inset_0_0_0_1px_rgba(22,138,76,0.16)] group-hover:bg-green'
-                            : 'bg-brand-tint text-brand shadow-[inset_0_0_0_1px_rgba(234,90,42,0.16)] group-hover:bg-brand'
+                        className={`num block font-display text-[2.5rem] font-extrabold leading-none tracking-[-0.045em] sm:text-[3.4rem] ${
+                          green ? 'text-green' : 'text-brand'
                         }`}
                       >
-                        <Icon className="h-[18px] w-[18px] sm:h-5 sm:w-5" strokeWidth={1.8} aria-hidden />
+                        {figure}
+                        {unit && <span className="ml-1.5 text-[0.5em] font-bold tracking-[-0.02em]">{unit}</span>}
                       </span>
-                    </div>
-                    <p className="relative mt-1.5 text-pretty text-[13.5px] leading-[1.55] text-ink-muted sm:mt-2 sm:text-[14.5px]">{m.sub}</p>
+                      <span className="mt-3 block font-sans text-[15px] font-semibold leading-snug tracking-[-0.01em] text-ink sm:mt-4 sm:text-[16.5px]">
+                        {m.label}
+                      </span>
+                    </h3>
+                    <p className="relative mt-3 border-t border-ink/[0.07] pt-3 text-[13px] leading-relaxed text-ink-muted sm:mt-4 sm:pt-4 sm:text-[14px]">
+                      {m.sub}
+                    </p>
                   </div>
                 </Reveal>
               );

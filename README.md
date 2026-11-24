@@ -9,28 +9,11 @@ The marketing site for **powermytutor.com**. It is a separate project and repo f
 npm install
 npm run dev        # http://localhost:3300
 npm run typecheck
-npm run build      # static site in out/
-npm run preview    # serves out/ the way Cloudflare Pages does, with _redirects and _headers: http://localhost:3310
+npm run build && npm start
 ```
 
-Stack: Next.js 15 (App Router, static export), TypeScript, Tailwind CSS 3, Lucide icons. Fonts are Sora
-(headings) and Inter (body), the same as the app. Brand tokens in `tailwind.config.ts` match the app's.
-
-## Hosting
-
-Cloudflare Pages, project `powermytutor-website`, deployed from this PC with Wrangler (no Git
-integration yet):
-
-```bash
-npx wrangler login   # once per PC
-npm run deploy       # builds, then uploads out/ as the production deployment
-```
-
-- `public/_redirects`: `/signup` and `/login` go to the app.
-- `public/_headers`: security headers, long caching for `/_next/static`, and `noindex` on the
-  `*.pages.dev` address so only powermytutor.com gets indexed.
-- Wrangler is pinned to 4.86.0, the last release that runs on Node 20 (later ones need Node 22). Its
-  local server only knows runtime dates up to May 2026, hence `--compatibility-date` in `preview`.
+Stack: Next.js 15 (App Router), TypeScript, Tailwind CSS 3, Lucide icons. Fonts are Sora (headings)
+and Inter (body), the same as the app. Brand tokens in `tailwind.config.ts` match the app's.
 
 ## Where things are
 
@@ -40,15 +23,11 @@ npm run deploy       # builds, then uploads out/ as the production deployment
 | `src/lib/content.ts` | Every word on the home page: features, steps, plans, FAQs |
 | `src/components/sections/` | One file per home page section |
 | `src/components/ui/` | Logo, browser and phone frames, callout pins, scroll reveal, the WhatsApp message recreation |
-| `public/product/` | Real app screenshots (WebP, 2x/3x), plus `-640/-1080/-1600` copies |
-| `src/lib/image-loader.ts` | Picks the right screenshot copy for each screen width (static hosting has no image optimizer) |
+| `public/product/` | Real app screenshots (WebP, 2x/3x) |
 
-The page: hero (the real dashboard screenshot with the phone docked over it) → at-a-glance facts → by
-hand vs with the app → feature cards for the five jobs of the day → product modules → how it works
-(3 setup steps and the day timeline) → laptop and phone → pricing → FAQ → closing band.
-
-If `npm run dev` sits at "Starting..." and never says "Ready", delete the `.next` folder and start
-it again. A leftover `.next` (after `npm run build`, or a dev server stopped mid-compile) causes it.
+The page: hero (laptop + phone) → at-a-glance facts → by hand vs with the app → feature cards for the
+five jobs of the day → product modules → how it works (3 setup steps and the day timeline) → laptop and
+phone → pricing → FAQ → closing band.
 
 ## Screenshots
 
@@ -66,8 +45,6 @@ How they were made, so they can be redone when the app changes:
 - `marks-sheet` — main area at 1440 × 900 (2x) with the cursor in roll 03's mark box, cropped to the
   left of the Remarks column. The callout pin in `Features.tsx` is placed in % of this image.
 - `report-card` — the printed report card page, top of the paper.
-
-After adding or replacing a screenshot, run `npm run images` to remake its 640/1080/1600 px copies.
 
 ## Keep in step with the app
 
